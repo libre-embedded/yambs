@@ -3,5 +3,5 @@ project:
   name: yambs2
 
 dependencies:
-  - github: {repo: yambs-sample2, owner: vkottler}
-  - github: {repo: yambs-sample, owner: vkottler}
+  - github: {repo: yambs-sample2, owner: libre-embedded}
+  - github: {repo: yambs-sample, owner: libre-embedded}

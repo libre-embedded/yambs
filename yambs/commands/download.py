@@ -37,7 +37,7 @@ def add_download_cmd(parser: _ArgumentParser) -> _CommandFunction:
     parser.add_argument(
         "-o",
         "--owner",
-        default="vkottler",
+        default="libre-embedded",
         help="repository owner (default: '%(default)s')",
     )
     parser.add_argument(

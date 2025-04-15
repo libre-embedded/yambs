@@ -18,7 +18,7 @@ def resolve_build_dir(build_root: Path, variant: str, path: Path) -> Path:
 
 
 def combine_if_not_absolute(root: Path, candidate: Pathlike) -> Path:
-    """https://github.com/vkottler/ifgen/blob/master/ifgen/paths.py"""
+    """https://github.com/libre-embedded/ifgen/blob/master/ifgen/paths.py"""
 
     candidate = normalize(candidate)
     return candidate if candidate.is_absolute() else root.joinpath(candidate)

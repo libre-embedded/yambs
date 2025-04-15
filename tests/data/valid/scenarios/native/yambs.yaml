@@ -11,7 +11,7 @@ uf2_family: RP2040
 project:
   name: yambs
   github:
-    owner: &self vkottler
+    owner: &self libre-embedded
 
 variants:
   # Toggle this to test regeneration.
