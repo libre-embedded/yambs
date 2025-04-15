@@ -18,4 +18,4 @@ def test_native_config_basic():
     )
 
     assert config.project.repo == "yambs"
-    assert config.project.owner == "vkottler"
+    assert config.project.owner == "libre-embedded"

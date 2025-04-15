@@ -2,11 +2,11 @@
     =====================================
     generator=datazen
     version=3.2.1
-    hash=0dde40d00d374bdfdb5fd177afca3640
+    hash=902699e354115c76651b7a9ec067c20b
     =====================================
 -->
 
-# yambs ([3.0.6](https://pypi.org/project/yambs/))
+# yambs ([3.0.7](https://pypi.org/project/yambs/))
 
 [![python](https://img.shields.io/pypi/pyversions/yambs.svg)](https://pypi.org/project/yambs/)
 ![Build Status](https://github.com/libre-embedded/yambs/workflows/Python%20Package/badge.svg)
@@ -206,7 +206,7 @@ usage: mbs download [-h] [-o OWNER] [-r REPO] [-O OUTPUT] [-p PATTERN]
 options:
   -h, --help            show this help message and exit
   -o OWNER, --owner OWNER
-                        repository owner (default: 'vkottler')
+                        repository owner (default: 'libre-embedded')
   -r REPO, --repo REPO  repository name (default: 'toolchains')
   -O OUTPUT, --output OUTPUT
                         output directory (default: '.')

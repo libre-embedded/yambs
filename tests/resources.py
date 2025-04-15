@@ -30,5 +30,5 @@ def clean_scenario(name: str) -> Path:
     return base
 
 
-OWNER = "vkottler"
+OWNER = "libre-embedded"
 REPO = "yambs-sample"

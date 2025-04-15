@@ -15,7 +15,7 @@ def test_github_url_basic():
     assert github_url().geturl() == "https://github.com"
     assert github_url(netloc_prefix="api").geturl() == "https://api.github.com"
     assert (
-        repo_release_api_url(OWNER, REPO)
-        == "https://api.github.com/repos/vkottler/yambs-sample/releases/latest"
+        repo_release_api_url(OWNER, REPO) == "https://api.github.com/repos/"
+        "libre-embedded/yambs-sample/releases/latest"
     )
     assert release_data(OWNER, REPO)
