@@ -1,7 +1,7 @@
 # =====================================
 # generator=datazen
-# version=3.2.0
-# hash=daf54da52332deabbf12efbfd83e041e
+# version=3.2.1
+# hash=b71b61471b576b2fecb1c1c0aac79c97
 # =====================================
 
 """
@@ -18,9 +18,9 @@ except (ImportError, ModuleNotFoundError):
 from yambs import DESCRIPTION, PKG_NAME, VERSION
 
 author_info = {
-    "name": "Vaughn Kottler",
-    "email": "vaughnkottler@gmail.com",
-    "username": "vkottler",
+    "name": "Libre Embedded",
+    "email": "vaughn@libre-embedded.com",
+    "username": "libre-embedded",
 }
 pkg_info = {
     "name": PKG_NAME,
@@ -29,6 +29,7 @@ pkg_info = {
     "description": DESCRIPTION,
     "versions": [
         "3.12",
+        "3.13",
     ],
 }
 setup(

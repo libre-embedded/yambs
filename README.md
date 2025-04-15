@@ -1,35 +1,29 @@
 <!--
     =====================================
     generator=datazen
-    version=3.2.0
-    hash=15503b8b7fb8360b1911a8bead7f56b3
+    version=3.2.1
+    hash=0dde40d00d374bdfdb5fd177afca3640
     =====================================
 -->
 
-# yambs ([3.0.5](https://pypi.org/project/yambs/))
+# yambs ([3.0.6](https://pypi.org/project/yambs/))
 
 [![python](https://img.shields.io/pypi/pyversions/yambs.svg)](https://pypi.org/project/yambs/)
-![Build Status](https://github.com/vkottler/yambs/workflows/Python%20Package/badge.svg)
-[![codecov](https://codecov.io/gh/vkottler/yambs/branch/master/graphs/badge.svg?branch=master)](https://codecov.io/github/vkottler/yambs)
+![Build Status](https://github.com/libre-embedded/yambs/workflows/Python%20Package/badge.svg)
+[![codecov](https://codecov.io/gh/libre-embedded/yambs/branch/master/graphs/badge.svg?branch=master)](https://codecov.io/github/libre-embedded/yambs)
 ![PyPI - Status](https://img.shields.io/pypi/status/yambs)
 ![Dependents (via libraries.io)](https://img.shields.io/librariesio/dependents/pypi/yambs)
 
 *Yet another meta build-system.*
 
-## Documentation
-
-### Generated
-
-* By [sphinx-apidoc](https://vkottler.github.io/python/sphinx/yambs)
-(What's [`sphinx-apidoc`](https://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html)?)
-* By [pydoc](https://vkottler.github.io/python/pydoc/yambs.html)
-(What's [`pydoc`](https://docs.python.org/3/library/pydoc.html)?)
+([interface documentation](https://libre-embedded.github.io/python/yambs))
 
 ## Python Version Support
 
 This package is tested with the following Python minor versions:
 
 * [`python3.12`](https://docs.python.org/3.12/)
+* [`python3.13`](https://docs.python.org/3.13/)
 
 ## Platform Support
 
