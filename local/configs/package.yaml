@@ -15,16 +15,16 @@ ci_local:
   - "  if: matrix.system == 'ubuntu-latest'"
 
   # Get latest clang.
-  - "- name: setup clang 17"
+  - "- name: setup clang 18"
   - "  run: |"
   - "    wget https://apt.llvm.org/llvm.sh"
   - "    chmod +x ./llvm.sh"
-  - "    sudo ./llvm.sh 17"
+  - "    sudo ./llvm.sh 18"
   - "    rm llvm.sh"
   - "  if: matrix.system == 'ubuntu-latest'"
 
   # Native toolchains.
-  - "- run: sudo apt-get install gcc-12 g++-12 clang-17 clang-format-17"
+  - "- run: sudo apt-get install gcc-13 g++-13 clang-18 clang-format-18"
   - "  if: matrix.system == 'ubuntu-latest'"
 
   # WASM.
