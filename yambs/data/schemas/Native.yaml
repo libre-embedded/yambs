@@ -27,6 +27,10 @@ properties:
 
   ldflag_groups: *flag_groups
 
+  ifgen_config:
+    type: string
+    default: ifgen.yaml
+
   variants:
     type: object
     additionalProperties: false

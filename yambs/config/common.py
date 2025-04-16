@@ -104,7 +104,8 @@ class CommonConfig(_YambsDictCodec, _BasicDictCodec):
         self.root = Path(data["root"])  # type: ignore
 
         self.data["config_file"] = str(DEFAULT_CONFIG)
-        self.data["entry"] = f"{Path(executable).name} -m {PKG_NAME}"
+        self.data["python"] = str(Path(executable).name)
+        self.data["entry"] = f"{self.data['python']} -m {PKG_NAME}"
 
         self.src_root = self.directory("src_root")
         self.build_root = self.directory("build_root")
@@ -162,5 +163,9 @@ class CommonConfig(_YambsDictCodec, _BasicDictCodec):
         if path.is_file():
             result.file = path
             result.data["config_file"] = str(path)
+
+        # ifgen configuration not required.
+        if "ifgen_config" in data and not Path(data["ifgen_config"]).is_file():
+            del data["ifgen_config"]
 
         return result

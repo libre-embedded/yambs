@@ -21,7 +21,7 @@ variants:
     enabled: false
 
   debug:
-    suffix: &gcc_version "-12"
+    suffix: &gcc_version "-13"
     targets: [apps, lib, uf2s]
 
   opt:
@@ -29,7 +29,7 @@ variants:
 
   clang:
     cflag_groups: [debug]
-    suffix: &clang_version "-17"
+    suffix: &clang_version "-18"
 
   clang-opt:
     extra_cflags: [--coverage]

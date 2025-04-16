@@ -11,6 +11,7 @@ from typing import Any, Dict, Set, TextIO
 # third-party
 from jinja2 import Environment
 from vcorelib.paths import rel
+from vcorelib.paths.context import text_stream_if_different
 
 # internal
 from yambs.config.board import Board
@@ -173,8 +174,12 @@ def generate(
         src_root = rel(env.config.src_root)
 
         # Perform source-file discovery.
-        with board_root.joinpath("sources.ninja").open("w") as sources_fd:
-            with board_root.joinpath("apps.ninja").open("w") as apps_fd:
+        with text_stream_if_different(
+            board_root.joinpath("sources.ninja")
+        ) as sources_fd:
+            with text_stream_if_different(
+                board_root.joinpath("apps.ninja")
+            ) as apps_fd:
                 write_link_lines(
                     apps_fd,
                     src_root,

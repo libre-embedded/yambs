@@ -35,6 +35,7 @@ renders:
       - commands-help-download
       - commands-help-gen
       - commands-help-native
+      - commands-help-native_manifest
       - commands-help-uf2conv
 
   - name: app.py

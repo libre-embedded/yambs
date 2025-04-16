@@ -10,10 +10,10 @@ from pathlib import Path
 # third-party
 from vcorelib.args import CommandFunction as _CommandFunction
 from vcorelib.dict import MergeStrategy, merge_dicts
-from vcorelib.io import ARBITER, DEFAULT_INCLUDES_KEY
+from vcorelib.io import ARBITER, DEFAULT_INCLUDES_KEY, encode_if_different
 
 # internal
-from yambs.commands.common import log_package
+from yambs.paths import write_dependency_file
 
 
 def compile_config_cmd(args: _Namespace) -> int:
@@ -23,29 +23,31 @@ def compile_config_cmd(args: _Namespace) -> int:
     if args.update:
         merge_strat = MergeStrategy.UPDATE
 
-    log_package()
+    files_loaded: list[Path] = []
 
-    return (
-        0
-        if ARBITER.encode(
-            args.output,
-            merge_dicts(
-                [
-                    ARBITER.decode(
-                        file,
-                        require_success=True,
-                        includes_key=args.includes_key,
-                        expect_overwrite=args.expect_overwrite,
-                        strategy=merge_strat,
-                    ).data
-                    for file in args.inputs
-                ],
-                expect_overwrite=args.expect_overwrite,
-                strategy=merge_strat,
-            ),
-        )[0]
-        else 1
+    decode_kwargs = {
+        "includes_key": args.includes_key,
+        "expect_overwrite": args.expect_overwrite,
+        "strategy": merge_strat,
+    }
+
+    data = merge_dicts(
+        [
+            ARBITER.decode(
+                file,
+                require_success=True,
+                files_loaded=files_loaded,
+                **decode_kwargs,
+            ).data
+            for file in args.inputs
+        ],
+        expect_overwrite=args.expect_overwrite,
+        strategy=merge_strat,
     )
+
+    write_dependency_file(args.output, files_loaded, base=args.dir)
+
+    return 0 if encode_if_different(args.output, data, **decode_kwargs) else 1
 
 
 def add_compile_config_cmd(parser: _ArgumentParser) -> _CommandFunction:

@@ -10,6 +10,7 @@ from typing import List, Set
 from vcorelib.io import ARBITER
 from vcorelib.logging import LoggerType
 from vcorelib.paths import rel, set_exec_flags
+from vcorelib.paths.context import text_stream_if_different
 
 # internal
 from yambs.dependency.config import Dependency, DependencyData
@@ -29,7 +30,7 @@ def write_third_party_script(
     if commands is None:
         commands = []
 
-    with path.open("w") as script_fd:
+    with text_stream_if_different(path) as script_fd:
         script_fd.write("#!/bin/bash\n\nset -e\n\n")
 
         # Add build commands.

@@ -8,8 +8,9 @@ from pathlib import Path
 from typing import Any, Dict, Optional, Set, TextIO
 
 # third-party
-from vcorelib.io import ARBITER
+from vcorelib.io import encode_if_different
 from vcorelib.logging import LoggerMixin
+from vcorelib.paths.context import text_stream_if_different
 
 # internal
 from yambs.aggregation import collect_files, populate_sources, sources_headers
@@ -204,7 +205,7 @@ class NativeBuildEnvironment(LoggerMixin):
         with self.log_time("Write '%s'", path):
             data: Dict[str, Any] = {}
 
-            for app in self.apps:
+            for app in sorted(self.apps):
                 name = app.with_suffix("").name
                 assert (
                     name not in data
@@ -218,11 +219,11 @@ class NativeBuildEnvironment(LoggerMixin):
                                 self.config.build_root, variant, elfs[app]
                             )
                         )
-                        for variant in self.config.data["variants"]
+                        for variant in sorted(self.config.data["variants"])
                     },
                 }
 
-            ARBITER.encode(
+            encode_if_different(
                 path,
                 {
                     "all": data,
@@ -249,6 +250,31 @@ class NativeBuildEnvironment(LoggerMixin):
         for path, recurse in paths_recurse:
             collect_files(path, files=self.sources, recurse=recurse)
 
+    def populate_sources(self, encode: bool) -> None:
+        """Populate instance metadata about source files."""
+
+        if not self.apps:
+            self._handle_extra_source_dirs()
+            populate_sources(
+                self.sources,
+                self.config.src_root,
+                self.apps,
+                self.regular,
+                self.third_party,
+            )
+
+            if encode:
+                encode_if_different(
+                    self.config.ninja_root.joinpath("sources.json"),
+                    {
+                        "apps": sorted(str(x) for x in self.apps),
+                        "regular": sorted(str(x) for x in self.regular),
+                        "third_party": sorted(
+                            str(x) for x in self.third_party
+                        ),
+                    },
+                )
+
     def generate(self, sources_only: bool = False) -> None:
         """Generate ninja files."""
 
@@ -272,14 +298,7 @@ class NativeBuildEnvironment(LoggerMixin):
                 self.dependency_manager.link_flags
             )
 
-            self._handle_extra_source_dirs()
-            populate_sources(
-                self.sources,
-                self.config.src_root,
-                self.apps,
-                self.regular,
-                self.third_party,
-            )
+            self.populate_sources(False)
 
             # Render templates.
             generate_variants(
@@ -295,13 +314,13 @@ class NativeBuildEnvironment(LoggerMixin):
         # Render sources file.
         path = self.config.ninja_root.joinpath("sources.ninja")
         with self.log_time("Write '%s'", path):
-            with path.open("w") as path_fd:
+            with text_stream_if_different(path) as path_fd:
                 outputs = self.write_source_rules(path_fd, wasm=wasm)
 
         # Render apps file.
         path = self.config.ninja_root.joinpath("apps.ninja")
         with self.log_time("Write '%s'", path):
-            with path.open("w") as path_fd:
+            with text_stream_if_different(path) as path_fd:
                 elfs = self.write_app_rules(
                     path_fd,
                     outputs,
