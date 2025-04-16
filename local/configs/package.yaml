@@ -3,7 +3,6 @@ name: yambs
 version: "{{major}}.{{minor}}.{{patch}}"
 description: Yet another meta build-system.
 entry: {{entry}}
-time_command: true
 
 ci_local:
   - "- uses: seanmiddleditch/gha-setup-ninja@master"
@@ -11,20 +10,21 @@ ci_local:
   - "  if: matrix.system == 'ubuntu-latest'"
 
   - "- run: pip${{'{{matrix.python-version}}'}} install -e ."
+  - "- run: pip${{'{{matrix.python-version}}'}} install ifgen"
   - "- run: mk python-editable"
   - "  if: matrix.system == 'ubuntu-latest'"
 
   # Get latest clang.
-  - "- name: setup clang 17"
+  - "- name: setup clang 18"
   - "  run: |"
   - "    wget https://apt.llvm.org/llvm.sh"
   - "    chmod +x ./llvm.sh"
-  - "    sudo ./llvm.sh 17"
+  - "    sudo ./llvm.sh 18"
   - "    rm llvm.sh"
   - "  if: matrix.system == 'ubuntu-latest'"
 
   # Native toolchains.
-  - "- run: sudo apt-get install gcc-12 g++-12 clang-17 clang-format-17"
+  - "- run: sudo apt-get install gcc-13 g++-13 clang-18 clang-format-18"
   - "  if: matrix.system == 'ubuntu-latest'"
 
   # WASM.
@@ -53,6 +53,8 @@ commands:
   - name: gen
     description: poll the source tree and generate any new build files
   - name: native
-    description: generate build files for native-only target projects
+    description: generate build files for native-style projects
+  - name: native_manifest
+    description: generate a source-file manifest for native-style projects
   - name: uf2conv
     description: convert to UF2 or flash directly

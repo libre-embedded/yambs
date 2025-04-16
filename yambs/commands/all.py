@@ -1,7 +1,7 @@
 # =====================================
 # generator=datazen
 # version=3.2.1
-# hash=a579de7276b0c8f219e976ab8cc6a008
+# hash=ae0cf07d293782e0e4e25dfbddfa33dd
 # =====================================
 
 """
@@ -21,6 +21,7 @@ from yambs.commands.dist import add_dist_cmd
 from yambs.commands.download import add_download_cmd
 from yambs.commands.gen import add_gen_cmd
 from yambs.commands.native import add_native_cmd
+from yambs.commands.native_manifest import add_native_manifest_cmd
 from yambs.commands.uf2conv import add_uf2conv_cmd
 
 
@@ -50,8 +51,13 @@ def commands() -> _List[_Tuple[str, str, _CommandRegister]]:
         ),
         (
             "native",
-            "generate build files for native-only target projects",
+            "generate build files for native-style projects",
             add_native_cmd,
+        ),
+        (
+            "native_manifest",
+            "generate a source-file manifest for native-style projects",
+            add_native_manifest_cmd,
         ),
         (
             "uf2conv",

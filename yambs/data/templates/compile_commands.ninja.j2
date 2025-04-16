@@ -1,3 +1,4 @@
 rule compile_commands
-  command = ninja -t compdb > compile_commands.json
-build compdb: compile_commands | regen
+  command = ninja -t compdb > $out
+build compile_commands.json: compile_commands | source_manifest
+build compdb: phony compile_commands.json
