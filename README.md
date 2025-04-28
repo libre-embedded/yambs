@@ -2,7 +2,7 @@
     =====================================
     generator=datazen
     version=3.2.1
-    hash=8ec0048012a09192a2e9092522308543
+    hash=d7df5c8ae9be9ed44d36289c4e0a54d3
     =====================================
 -->
 
@@ -15,6 +15,8 @@
 ![Dependents (via libraries.io)](https://img.shields.io/librariesio/dependents/pypi/yambs)
 
 *Yet another meta build-system.*
+
+Consider [sponsoring development](https://github.com/sponsors/libre-embedded).
 
 ([interface documentation](https://libre-embedded.github.io/python/yambs))
 
