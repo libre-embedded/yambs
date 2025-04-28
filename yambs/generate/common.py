@@ -10,11 +10,11 @@ from typing import Any, Dict
 # third-party
 from datazen.templates import environment
 from jinja2 import Environment, FileSystemLoader
-from vcorelib import DEFAULT_ENCODING
 from vcorelib.paths import resource
 
 # internal
 from yambs import PKG_NAME
+from yambs.paths import write_if_different
 
 APP_ROOT = "apps"
 
@@ -42,6 +42,6 @@ def render_template(
     if out is None:
         out = name
 
-    with root.joinpath(out).open("w", encoding=DEFAULT_ENCODING) as path_fd:
+    with write_if_different(root.joinpath(out)) as path_fd:
         path_fd.write(jinja.get_template(f"{name}.j2").render(data))
         path_fd.write(linesep)

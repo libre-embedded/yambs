@@ -15,6 +15,7 @@ from vcorelib.io import ARBITER, DEFAULT_INCLUDES_KEY
 
 # internal
 from yambs.commands.common import log_package
+from yambs.paths import encode_if_different
 
 
 def merge_strat(args: _Namespace) -> MergeStrategy:
@@ -60,21 +61,17 @@ def compile_config_cmd(args: _Namespace) -> int:
 
     data, _ = load_data(args)
 
-    # Don't write if already matching.
-    if (
-        args.output.is_file()
-        and data
-        == ARBITER.decode(
+    return (
+        0
+        if encode_if_different(
             args.output,
-            require_success=True,
+            data,
             includes_key=args.includes_key,
             expect_overwrite=args.expect_overwrite,
             strategy=merge_strat(args),
-        ).data
-    ):
-        return 0
-
-    return 0 if ARBITER.encode(args.output, data)[0] else 1
+        )
+        else 1
+    )
 
 
 def add_compile_config_cmd(parser: _ArgumentParser) -> _CommandFunction:

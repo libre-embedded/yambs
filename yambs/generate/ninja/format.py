@@ -9,12 +9,12 @@ from pathlib import Path
 from typing import Iterable, TextIO
 
 # third-party
-from vcorelib import DEFAULT_ENCODING
 from vcorelib.paths import rel
 
 # internal
 from yambs.config.common import CommonConfig
 from yambs.generate.ninja import write_continuation
+from yambs.paths import write_if_different
 
 
 def render_format(
@@ -25,8 +25,8 @@ def render_format(
 ) -> None:
     """Render the ninja source for formatting files."""
 
-    with config.ninja_root.joinpath("format.ninja").open(
-        "w", encoding=DEFAULT_ENCODING
+    with write_if_different(
+        config.ninja_root.joinpath("format.ninja")
     ) as path_fd:
         write_format_target(path_fd, paths, suffix, root)
 

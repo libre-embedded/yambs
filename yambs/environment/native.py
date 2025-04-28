@@ -8,7 +8,6 @@ from pathlib import Path
 from typing import Any, Dict, Optional, Set, TextIO
 
 # third-party
-from vcorelib.io import ARBITER
 from vcorelib.logging import LoggerMixin
 
 # internal
@@ -19,7 +18,12 @@ from yambs.generate.common import APP_ROOT, get_jinja, render_template
 from yambs.generate.ninja import variant_phony, write_continuation, write_link
 from yambs.generate.ninja.format import render_format
 from yambs.generate.variants import generate as generate_variants
-from yambs.paths import combine_if_not_absolute, resolve_build_dir
+from yambs.paths import (
+    combine_if_not_absolute,
+    encode_if_different,
+    resolve_build_dir,
+    write_if_different,
+)
 from yambs.translation import BUILD_DIR_PATH, get_translator
 
 
@@ -222,7 +226,7 @@ class NativeBuildEnvironment(LoggerMixin):
                     },
                 }
 
-            ARBITER.encode(
+            encode_if_different(
                 path,
                 {
                     "all": data,
@@ -295,13 +299,13 @@ class NativeBuildEnvironment(LoggerMixin):
         # Render sources file.
         path = self.config.ninja_root.joinpath("sources.ninja")
         with self.log_time("Write '%s'", path):
-            with path.open("w") as path_fd:
+            with write_if_different(path) as path_fd:
                 outputs = self.write_source_rules(path_fd, wasm=wasm)
 
         # Render apps file.
         path = self.config.ninja_root.joinpath("apps.ninja")
         with self.log_time("Write '%s'", path):
-            with path.open("w") as path_fd:
+            with write_if_different(path) as path_fd:
                 elfs = self.write_app_rules(
                     path_fd,
                     outputs,

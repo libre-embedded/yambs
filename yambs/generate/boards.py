@@ -17,6 +17,7 @@ from yambs.config.board import Board
 from yambs.environment import BuildEnvironment, SourceSets
 from yambs.generate.common import APP_ROOT, render_template
 from yambs.generate.ninja import write_link_lines, write_source_line
+from yambs.paths import write_if_different
 from yambs.translation import is_header, is_source
 
 LOG = getLogger(__name__)
@@ -173,8 +174,12 @@ def generate(
         src_root = rel(env.config.src_root)
 
         # Perform source-file discovery.
-        with board_root.joinpath("sources.ninja").open("w") as sources_fd:
-            with board_root.joinpath("apps.ninja").open("w") as apps_fd:
+        with write_if_different(
+            board_root.joinpath("sources.ninja")
+        ) as sources_fd:
+            with write_if_different(
+                board_root.joinpath("apps.ninja")
+            ) as apps_fd:
                 write_link_lines(
                     apps_fd,
                     src_root,
