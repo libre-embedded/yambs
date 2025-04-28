@@ -6,6 +6,7 @@ An entry-point for the 'compile_config' command.
 from argparse import ArgumentParser as _ArgumentParser
 from argparse import Namespace as _Namespace
 from pathlib import Path
+from typing import Any as _Any
 
 # third-party
 from vcorelib.args import CommandFunction as _CommandFunction
@@ -16,36 +17,64 @@ from vcorelib.io import ARBITER, DEFAULT_INCLUDES_KEY
 from yambs.commands.common import log_package
 
 
+def merge_strat(args: _Namespace) -> MergeStrategy:
+    """Get a merge strategy from parsed arguments."""
+
+    strat = MergeStrategy.RECURSIVE
+    if args.update:
+        strat = MergeStrategy.UPDATE
+    return strat
+
+
+def load_data(args: _Namespace) -> tuple[dict[str, _Any], list[Path]]:
+    """Load data files based on parsed arguments."""
+
+    files_loaded: list[Path] = []
+
+    strat = merge_strat(args)
+
+    return (
+        merge_dicts(
+            [
+                ARBITER.decode(
+                    file,
+                    require_success=True,
+                    includes_key=args.includes_key,
+                    expect_overwrite=args.expect_overwrite,
+                    strategy=strat,
+                    files_loaded=files_loaded,
+                ).data
+                for file in args.inputs
+            ],
+            expect_overwrite=args.expect_overwrite,
+            strategy=strat,
+        ),
+        files_loaded,
+    )
+
+
 def compile_config_cmd(args: _Namespace) -> int:
     """Execute the compile_config command."""
 
-    merge_strat = MergeStrategy.RECURSIVE
-    if args.update:
-        merge_strat = MergeStrategy.UPDATE
-
     log_package()
 
-    return (
-        0
-        if ARBITER.encode(
+    data, _ = load_data(args)
+
+    # Don't write if already matching.
+    if (
+        args.output.is_file()
+        and data
+        == ARBITER.decode(
             args.output,
-            merge_dicts(
-                [
-                    ARBITER.decode(
-                        file,
-                        require_success=True,
-                        includes_key=args.includes_key,
-                        expect_overwrite=args.expect_overwrite,
-                        strategy=merge_strat,
-                    ).data
-                    for file in args.inputs
-                ],
-                expect_overwrite=args.expect_overwrite,
-                strategy=merge_strat,
-            ),
-        )[0]
-        else 1
-    )
+            require_success=True,
+            includes_key=args.includes_key,
+            expect_overwrite=args.expect_overwrite,
+            strategy=merge_strat(args),
+        ).data
+    ):
+        return 0
+
+    return 0 if ARBITER.encode(args.output, data)[0] else 1
 
 
 def add_compile_config_cmd(parser: _ArgumentParser) -> _CommandFunction:
