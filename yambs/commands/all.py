@@ -1,7 +1,7 @@
 # =====================================
 # generator=datazen
 # version=3.2.1
-# hash=a579de7276b0c8f219e976ab8cc6a008
+# hash=807c90b4818806df2e6670226d32be7e
 # =====================================
 
 """
@@ -17,6 +17,7 @@ from vcorelib.args import CommandRegister as _CommandRegister
 
 # internal
 from yambs.commands.compile_config import add_compile_config_cmd
+from yambs.commands.compile_dd import add_compile_dd_cmd
 from yambs.commands.dist import add_dist_cmd
 from yambs.commands.download import add_download_cmd
 from yambs.commands.gen import add_gen_cmd
@@ -32,6 +33,11 @@ def commands() -> _List[_Tuple[str, str, _CommandRegister]]:
             "compile_config",
             "load configuration data and write results to a file",
             add_compile_config_cmd,
+        ),
+        (
+            "compile_dd",
+            "load configuration data and write ninja dynamic dependencies",
+            add_compile_dd_cmd,
         ),
         (
             "dist",

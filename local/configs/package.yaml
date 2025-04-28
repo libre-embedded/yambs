@@ -46,6 +46,8 @@ dev_requirements:
 commands:
   - name: compile_config
     description: load configuration data and write results to a file
+  - name: compile_dd
+    description: load configuration data and write ninja dynamic dependencies
   - name: dist
     description: create a source distribution
   - name: download

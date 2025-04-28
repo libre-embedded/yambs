@@ -1,0 +1,2 @@
+ninja_dyndep_version = 1
+build tests/data/valid/compile_config_out.json: dyndep | tests/data/valid/compile_config_in1.yaml

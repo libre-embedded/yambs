@@ -3,7 +3,7 @@
 default_dirs: false
 
 commands:
-{% for command in ["compile_config", "dist", "download", "gen", "native", "uf2conv"] %}
+{% for command in ["compile_config", "compile_dd", "dist", "download", "gen", "native", "uf2conv"] %}
   - name: help-{{command}}
     command: "./venv{{python_version}}/bin/{{entry}}"
     force: true

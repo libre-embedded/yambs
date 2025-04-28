@@ -4,6 +4,7 @@
 
 rule compile_config
   command = {{entry}} compile_config $out $in
+  depfile = $out.d
 
 build $include_dir/compiled_config.json: compile_config {{config_file}}
 build check_config: phony $include_dir/compiled_config.json

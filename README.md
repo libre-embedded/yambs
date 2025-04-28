@@ -2,7 +2,7 @@
     =====================================
     generator=datazen
     version=3.2.1
-    hash=d7df5c8ae9be9ed44d36289c4e0a54d3
+    hash=7d5f3f955f4bea96299cfd46bc65455b
     =====================================
 -->
 
@@ -129,7 +129,8 @@ following a specific convention), put your configuration data here.
 $ ./venv3.12/bin/mbs -h
 
 usage: mbs [-h] [--version] [-v] [-q] [--curses] [--no-uvloop] [-C DIR]
-           {compile_config,dist,download,gen,native,uf2conv,noop} ...
+           {compile_config,compile_dd,dist,download,gen,native,uf2conv,noop}
+           ...
 
 Yet another meta build-system.
 
@@ -143,9 +144,11 @@ options:
   -C DIR, --dir DIR     execute from a specific directory
 
 commands:
-  {compile_config,dist,download,gen,native,uf2conv,noop}
+  {compile_config,compile_dd,dist,download,gen,native,uf2conv,noop}
                         set of available commands
     compile_config      load configuration data and write results to a file
+    compile_dd          load configuration data and write ninja dynamic
+                        dependencies
     dist                create a source distribution
     download            download GitHub release assets
     gen                 poll the source tree and generate any new build files
@@ -179,6 +182,18 @@ options:
   -e, --expect-overwrite
                         allow configuration files to overwrite data when
                         loaded
+
+```
+
+### `compile_dd`
+
+```
+$ ./venv3.12/bin/mbs compile_dd -h
+
+usage: mbs compile_dd [-h]
+
+options:
+  -h, --help  show this help message and exit
 
 ```
 
