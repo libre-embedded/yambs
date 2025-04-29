@@ -24,7 +24,7 @@ LOG = getLogger(__name__)
 
 def log_package() -> None:
     """Log some basic package information."""
-    LOG.info("%s-%s - %s.", PKG_NAME, VERSION, DESCRIPTION)
+    LOG.info("%s-%s - %s", PKG_NAME, VERSION, DESCRIPTION)
 
 
 def add_config_arg(parser: _ArgumentParser) -> None:

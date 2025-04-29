@@ -20,4 +20,4 @@ include $include_dir/rules.ninja
 include $include_dir/sources.ninja
 include $include_dir/apps.ninja
 
-build $variant: phony{% for task in targets %} ${variant}_{{task}}{% endfor %} | regen
+build $variant: phony{% for task in targets %} ${variant}_{{task}}{% endfor %} || regen

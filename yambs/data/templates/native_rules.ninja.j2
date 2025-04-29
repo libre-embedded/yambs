@@ -44,6 +44,6 @@ build_dir = {{build_root}}/$variant
 rule script
   command = /bin/bash $in $out
 
-build $build_dir/third_party.txt: script $include_dir/third_party.sh | regen
+build $build_dir/third_party.txt: script $include_dir/third_party.sh | native_config || regen
 
 build ${variant}_third_party: phony $build_dir/third_party.txt

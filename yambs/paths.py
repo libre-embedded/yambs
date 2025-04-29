@@ -4,9 +4,12 @@ A module implementing some file-system path utilities.
 
 # built-in
 from pathlib import Path
+from typing import Iterable
+
+from vcorelib.io.file_writer import IndentedFileWriter
 
 # third-party
-from vcorelib.paths import Pathlike, normalize
+from vcorelib.paths import Pathlike, normalize, rel
 
 # internal
 from yambs.translation import BUILD_DIR_PATH
@@ -22,3 +25,18 @@ def combine_if_not_absolute(root: Path, candidate: Pathlike) -> Path:
 
     candidate = normalize(candidate)
     return candidate if candidate.is_absolute() else root.joinpath(candidate)
+
+
+def write_dependency_file(
+    output: Path, deps: Iterable[Pathlike], base: Pathlike = None
+) -> Path:
+    """Write a dependency file."""
+
+    result = output.with_suffix(output.suffix + ".d")
+
+    with IndentedFileWriter.from_path_if_different(result) as writer:
+        line = str(rel(output, base=base)) + ": "
+        line += " ".join([str(rel(x, base=base)) for x in deps])
+        writer.write(line)
+
+    return result

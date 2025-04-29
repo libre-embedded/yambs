@@ -2,11 +2,11 @@
     =====================================
     generator=datazen
     version=3.2.1
-    hash=902699e354115c76651b7a9ec067c20b
+    hash=afdb6282522165d5de71969f5c1a9826
     =====================================
 -->
 
-# yambs ([3.0.7](https://pypi.org/project/yambs/))
+# yambs ([3.1.0](https://pypi.org/project/yambs/))
 
 [![python](https://img.shields.io/pypi/pyversions/yambs.svg)](https://pypi.org/project/yambs/)
 ![Build Status](https://github.com/libre-embedded/yambs/workflows/Python%20Package/badge.svg)
@@ -15,6 +15,8 @@
 ![Dependents (via libraries.io)](https://img.shields.io/librariesio/dependents/pypi/yambs)
 
 *Yet another meta build-system.*
+
+Consider [sponsoring development](https://github.com/sponsors/libre-embedded).
 
 ([interface documentation](https://libre-embedded.github.io/python/yambs))
 
@@ -127,7 +129,8 @@ following a specific convention), put your configuration data here.
 $ ./venv3.12/bin/mbs -h
 
 usage: mbs [-h] [--version] [-v] [-q] [--curses] [--no-uvloop] [-C DIR]
-           {compile_config,dist,download,gen,native,uf2conv,noop} ...
+           {compile_config,dist,download,gen,native,native_manifest,uf2conv,noop}
+           ...
 
 Yet another meta build-system.
 
@@ -141,13 +144,15 @@ options:
   -C DIR, --dir DIR     execute from a specific directory
 
 commands:
-  {compile_config,dist,download,gen,native,uf2conv,noop}
+  {compile_config,dist,download,gen,native,native_manifest,uf2conv,noop}
                         set of available commands
     compile_config      load configuration data and write results to a file
     dist                create a source distribution
     download            download GitHub release assets
     gen                 poll the source tree and generate any new build files
-    native              generate build files for native-only target projects
+    native              generate build files for native-style projects
+    native_manifest     generate a source-file manifest for native-style
+                        projects
     uf2conv             convert to UF2 or flash directly
     noop                command stub (does nothing)
 
@@ -253,6 +258,21 @@ options:
                         changes
   -s, --sources         whether or not to only re-generate source manifests
   -n, --no-build        whether or not to skip running 'ninja'
+
+```
+
+### `native_manifest`
+
+```
+$ ./venv3.12/bin/mbs native_manifest -h
+
+usage: mbs native_manifest [-h] [-c CONFIG]
+
+options:
+  -h, --help            show this help message and exit
+  -c CONFIG, --config CONFIG
+                        the path to the top-level configuration file (default:
+                        'yambs.yaml')
 
 ```
 

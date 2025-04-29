@@ -9,3 +9,5 @@ versions: ["3.12", "3.13"]
 systems:
   - macos-latest
   - windows-latest
+
+codecov_ubuntu: true

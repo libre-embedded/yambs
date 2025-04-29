@@ -39,9 +39,11 @@ def test_native_command_basic():
     clean_scenario("native3")
 
     with in_dir(path):
+        assert yambs_main([PKG_NAME, "native_manifest"]) == 0
         assert yambs_main([PKG_NAME, "native", "-w", "-i"]) == 0
         assert yambs_main([PKG_NAME, "native"]) == 0
 
         # Try to build (if we can).
         if platform == "linux" and which("ninja"):
+            run(["ninja", "format"], check=True)
             run(["ninja", "all", "format-check"], check=True)
