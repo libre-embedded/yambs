@@ -1,0 +1,17 @@
+---
+variants:
+  debug:
+    suffix: &gcc_version "-14"
+    targets: [apps, lib, uf2s]
+
+  opt:
+    suffix: *gcc_version
+
+  clang:
+    cflag_groups: [debug]
+    suffix: &clang_version "-19"
+
+  clang-opt:
+    extra_cflags: [--coverage]
+    cflag_groups: [opt]
+    suffix: *clang_version

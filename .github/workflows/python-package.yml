@@ -97,7 +97,7 @@ jobs:
 
       - run: |
           mk python-release owner=libre-embedded \
-                            repo=yambs version=3.1.0
+                            repo=yambs version=3.1.1
         if: |
           matrix.python-version == '3.12'
           && matrix.system == 'ubuntu-latest'

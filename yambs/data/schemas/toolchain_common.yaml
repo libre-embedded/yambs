@@ -2,11 +2,11 @@
 properties:
   c_standard:
     type: string
-    default: gnu17
+    default: gnu23
 
   cxx_standard:
     type: string
-    default: gnu++2b
+    default: gnu++26
 
   extra_cflags:
     type: array

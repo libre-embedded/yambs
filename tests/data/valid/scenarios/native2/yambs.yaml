@@ -1,4 +1,10 @@
 ---
+includes:
+  - local.yaml
+
+extra_dist:
+  - local.yaml
+
 project:
   name: yambs2
 

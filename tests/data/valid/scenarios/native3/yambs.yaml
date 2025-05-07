@@ -2,5 +2,11 @@
 includes:
   - package://yambs/includes/wasm.yaml
 
+variants:
+  # constrained by the em++/emcc available to ci
+  wasm:
+    c_standard: gnu17
+    cxx_standard: gnu++2b
+
 project:
   name: yambs3
