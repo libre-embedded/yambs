@@ -6,7 +6,6 @@ entry: {{entry}}
 
 ci_local:
   - "- uses: seanmiddleditch/gha-setup-ninja@master"
-  - "  with: {version: 1.11.1}"
   - "  if: matrix.system == 'ubuntu-latest'"
 
   - "- run: pip${{'{{matrix.python-version}}'}} install -e ."

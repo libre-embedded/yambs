@@ -42,7 +42,6 @@ jobs:
 
       # Begin project-specific setup.
       - uses: seanmiddleditch/gha-setup-ninja@master
-        with: {version: 1.11.1}
         if: matrix.system == 'ubuntu-latest'
       - run: pip${{matrix.python-version}} install -e .
       - run: pip${{matrix.python-version}} install ifgen
