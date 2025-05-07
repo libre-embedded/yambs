@@ -55,7 +55,7 @@ jobs:
           sudo ./llvm.sh 18
           rm llvm.sh
         if: matrix.system == 'ubuntu-latest'
-      - run: sudo apt-get install gcc-13 g++-13 clang-18 clang-format-18
+      - run: sudo apt-get install gcc-14 g++-14 clang-19 clang-format-19
         if: matrix.system == 'ubuntu-latest'
       - run: sudo apt-get install emscripten
         if: matrix.system == 'ubuntu-latest'

@@ -24,7 +24,7 @@ ci_local:
   - "  if: matrix.system == 'ubuntu-latest'"
 
   # Native toolchains.
-  - "- run: sudo apt-get install gcc-13 g++-13 clang-18 clang-format-18"
+  - "- run: sudo apt-get install gcc-14 g++-14 clang-19 clang-format-19"
   - "  if: matrix.system == 'ubuntu-latest'"
 
   # WASM.
