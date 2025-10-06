@@ -200,22 +200,17 @@ def get_drives(info_file: str = INFO_FILE) -> List[str]:
 
     drives = []
     if sys.platform == "win32":  # pragma: nocover
-        result = subprocess.check_output(
+        r = subprocess.check_output(
             [
-                "wmic",
-                "PATH",
-                "Win32_LogicalDisk",
-                "get",
-                "DeviceID,",
-                "VolumeName,",
-                "FileSystem,",
-                "DriveType",
+                "powershell",
+                "-Command",
+                "(Get-WmiObject Win32_LogicalDisk "
+                "-Filter \"VolumeName='RPI-RP2'\").DeviceID",
             ]
         )
-        for line in to_str(result).split("\n"):
-            words = re.split("\\s+", line)
-            if len(words) >= 3 and words[1] == "2" and words[2] == "FAT":
-                drives.append(words[0])
+        drive = to_str(r).strip()
+        if drive:
+            drives.append(drive)
     else:
         rootpath = "/media"
         if sys.platform == "darwin":  # pragma: nocover
