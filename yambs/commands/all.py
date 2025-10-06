@@ -1,16 +1,12 @@
 # =====================================
 # generator=datazen
 # version=3.2.3
-# hash=ae0cf07d293782e0e4e25dfbddfa33dd
+# hash=01315de1d4442a08f5ab9bc31f9d58b9
 # =====================================
 
 """
 A module aggregating package commands.
 """
-
-# built-in
-from typing import List as _List
-from typing import Tuple as _Tuple
 
 # third-party
 from vcorelib.args import CommandRegister as _CommandRegister
@@ -25,7 +21,7 @@ from yambs.commands.native_manifest import add_native_manifest_cmd
 from yambs.commands.uf2conv import add_uf2conv_cmd
 
 
-def commands() -> _List[_Tuple[str, str, _CommandRegister]]:
+def commands() -> list[tuple[str, str, _CommandRegister]]:
     """Get this package's commands."""
 
     return [
