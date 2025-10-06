@@ -37,7 +37,7 @@ rule uf2
 {% endif %}
 
 rule ar
-  command = ar rcs $out $in
+  command = ${toolchain_prefix}ar rcs $out $in
 
 build_dir = {{build_root}}/$variant
 

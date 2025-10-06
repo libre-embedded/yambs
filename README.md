@@ -2,11 +2,11 @@
     =====================================
     generator=datazen
     version=3.2.3
-    hash=f979b212166ad7b0a54ae26cdb72b630
+    hash=9cabf2cb169cd11782371650ce91e6e8
     =====================================
 -->
 
-# yambs ([3.1.1](https://pypi.org/project/yambs/))
+# yambs ([3.1.2](https://pypi.org/project/yambs/))
 
 [![python](https://img.shields.io/pypi/pyversions/yambs.svg)](https://pypi.org/project/yambs/)
 ![Build Status](https://github.com/libre-embedded/yambs/workflows/Python%20Package/badge.svg)
@@ -126,11 +126,10 @@ following a specific convention), put your configuration data here.
 # Command-line Options
 
 ```
-$ ./venv3.12/bin/mbs -h
+$ ./venv3.13/bin/mbs -h
 
 usage: mbs [-h] [--version] [-v] [-q] [--curses] [--no-uvloop] [-C DIR]
-           {compile_config,dist,download,gen,native,native_manifest,uf2conv,noop}
-           ...
+           {compile_config,dist,download,gen,native,native_manifest,uf2conv,noop} ...
 
 Yet another meta build-system.
 
@@ -141,7 +140,7 @@ options:
   -q, --quiet           set to reduce output
   --curses              whether or not to use curses.wrapper when starting
   --no-uvloop           whether or not to disable uvloop as event loop driver
-  -C DIR, --dir DIR     execute from a specific directory
+  -C, --dir DIR         execute from a specific directory
 
 commands:
   {compile_config,dist,download,gen,native,native_manifest,uf2conv,noop}
@@ -163,7 +162,7 @@ commands:
 ### `compile_config`
 
 ```
-$ ./venv3.12/bin/mbs compile_config -h
+$ ./venv3.13/bin/mbs compile_config -h
 
 usage: mbs compile_config [-h] [-i INCLUDES_KEY] [-u] [-e]
                           output inputs [inputs ...]
@@ -174,7 +173,7 @@ positional arguments:
 
 options:
   -h, --help            show this help message and exit
-  -i INCLUDES_KEY, --includes-key INCLUDES_KEY
+  -i, --includes-key INCLUDES_KEY
                         top-level key to use for included files (default:
                         includes)
   -u, --update          whether or not to use the 'update' merge strategy
@@ -188,34 +187,31 @@ options:
 ### `dist`
 
 ```
-$ ./venv3.12/bin/mbs dist -h
+$ ./venv3.13/bin/mbs dist -h
 
 usage: mbs dist [-h] [-c CONFIG] [-s]
 
 options:
-  -h, --help            show this help message and exit
-  -c CONFIG, --config CONFIG
-                        the path to the top-level configuration file (default:
-                        'yambs.yaml')
-  -s, --sources         set this flag to only capture source files
+  -h, --help           show this help message and exit
+  -c, --config CONFIG  the path to the top-level configuration file (default:
+                       'yambs.yaml')
+  -s, --sources        set this flag to only capture source files
 
 ```
 
 ### `download`
 
 ```
-$ ./venv3.12/bin/mbs download -h
+$ ./venv3.13/bin/mbs download -h
 
 usage: mbs download [-h] [-o OWNER] [-r REPO] [-O OUTPUT] [-p PATTERN]
 
 options:
   -h, --help            show this help message and exit
-  -o OWNER, --owner OWNER
-                        repository owner (default: 'libre-embedded')
-  -r REPO, --repo REPO  repository name (default: 'toolchains')
-  -O OUTPUT, --output OUTPUT
-                        output directory (default: '.')
-  -p PATTERN, --pattern PATTERN
+  -o, --owner OWNER     repository owner (default: 'libre-embedded')
+  -r, --repo REPO       repository name (default: 'toolchains')
+  -O, --output OUTPUT   output directory (default: '.')
+  -p, --pattern PATTERN
                         a pattern to use to select project specifications
                         filtered by name
 
@@ -224,62 +220,59 @@ options:
 ### `gen`
 
 ```
-$ ./venv3.12/bin/mbs gen -h
+$ ./venv3.13/bin/mbs gen -h
 
 usage: mbs gen [-h] [-c CONFIG] [-i] [-w] [-s] [-n]
 
 options:
-  -h, --help            show this help message and exit
-  -c CONFIG, --config CONFIG
-                        the path to the top-level configuration file (default:
-                        'yambs.yaml')
-  -i, --single-pass     only run a single watch iteration
-  -w, --watch           whether or not to continue watching for source tree
-                        changes
-  -s, --sources         whether or not to only re-generate source manifests
-  -n, --no-build        whether or not to skip running 'ninja'
+  -h, --help           show this help message and exit
+  -c, --config CONFIG  the path to the top-level configuration file (default:
+                       'yambs.yaml')
+  -i, --single-pass    only run a single watch iteration
+  -w, --watch          whether or not to continue watching for source tree
+                       changes
+  -s, --sources        whether or not to only re-generate source manifests
+  -n, --no-build       whether or not to skip running 'ninja'
 
 ```
 
 ### `native`
 
 ```
-$ ./venv3.12/bin/mbs native -h
+$ ./venv3.13/bin/mbs native -h
 
 usage: mbs native [-h] [-c CONFIG] [-i] [-w] [-s] [-n]
 
 options:
-  -h, --help            show this help message and exit
-  -c CONFIG, --config CONFIG
-                        the path to the top-level configuration file (default:
-                        'yambs.yaml')
-  -i, --single-pass     only run a single watch iteration
-  -w, --watch           whether or not to continue watching for source tree
-                        changes
-  -s, --sources         whether or not to only re-generate source manifests
-  -n, --no-build        whether or not to skip running 'ninja'
+  -h, --help           show this help message and exit
+  -c, --config CONFIG  the path to the top-level configuration file (default:
+                       'yambs.yaml')
+  -i, --single-pass    only run a single watch iteration
+  -w, --watch          whether or not to continue watching for source tree
+                       changes
+  -s, --sources        whether or not to only re-generate source manifests
+  -n, --no-build       whether or not to skip running 'ninja'
 
 ```
 
 ### `native_manifest`
 
 ```
-$ ./venv3.12/bin/mbs native_manifest -h
+$ ./venv3.13/bin/mbs native_manifest -h
 
 usage: mbs native_manifest [-h] [-c CONFIG]
 
 options:
-  -h, --help            show this help message and exit
-  -c CONFIG, --config CONFIG
-                        the path to the top-level configuration file (default:
-                        'yambs.yaml')
+  -h, --help           show this help message and exit
+  -c, --config CONFIG  the path to the top-level configuration file (default:
+                       'yambs.yaml')
 
 ```
 
 ### `uf2conv`
 
 ```
-$ ./venv3.12/bin/mbs uf2conv -h
+$ ./venv3.13/bin/mbs uf2conv -h
 
 usage: mbs uf2conv [-h] [-b BASE] [-f FAMILY] [-o FILE] [-d DEVICE_PATH] [-l]
                    [-c] [-D] [-w] [-C] [-i]
@@ -290,14 +283,12 @@ positional arguments:
 
 options:
   -h, --help            show this help message and exit
-  -b BASE, --base BASE  set base address of application for BIN format
+  -b, --base BASE       set base address of application for BIN format
                         (default: 0x2000)
-  -f FAMILY, --family FAMILY
-                        specify familyID - number or name (default: 0x0)
-  -o FILE, --output FILE
-                        write output to named file; defaults to "flash.uf2" or
+  -f, --family FAMILY   specify familyID - number or name (default: 0x0)
+  -o, --output FILE     write output to named file; defaults to "flash.uf2" or
                         "flash.bin" where sensible
-  -d DEVICE_PATH, --device DEVICE_PATH
+  -d, --device DEVICE_PATH
                         select a device path to flash
   -l, --list            list connected devices
   -c, --convert         do not flash, just convert

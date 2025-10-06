@@ -1,7 +1,7 @@
 # =====================================
 # generator=datazen
 # version=3.2.3
-# hash=f4751d2c9068975cc7557fd8ea7beee8
+# hash=d82f0de9f2fc3afd05b5f3214ab796af
 # =====================================
 
 """
@@ -13,7 +13,6 @@ import argparse
 import os
 from pathlib import Path
 import sys
-from typing import List
 
 # third-party
 from vcorelib.logging import init_logging, logging_args
@@ -23,7 +22,7 @@ from yambs import DESCRIPTION, VERSION
 from yambs.app import add_app_args, entry
 
 
-def main(argv: List[str] = None) -> int:
+def main(argv: list[str] = None) -> int:
     """Program entry-point."""
 
     result = 0
