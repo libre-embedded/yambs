@@ -3,7 +3,7 @@ A module implementing a native-build environment.
 """
 
 # built-in
-from os import linesep
+from os import linesep, sep
 from pathlib import Path
 from typing import Any, Dict, Optional, Set, TextIO
 
@@ -22,6 +22,8 @@ from yambs.generate.ninja.format import render_format
 from yambs.generate.variants import generate as generate_variants
 from yambs.paths import combine_if_not_absolute, resolve_build_dir
 from yambs.translation import BUILD_DIR_PATH, get_translator
+
+GENERATED = f"{sep}generated{sep}"
 
 
 class NativeBuildEnvironment(LoggerMixin):
@@ -335,6 +337,7 @@ class NativeBuildEnvironment(LoggerMixin):
                 x
                 for x in sources_headers(self.sources)
                 if self.config.src_root in x.parents
+                and GENERATED not in str(x)
             },
             root=self.config.root,
             suffix=self.config.data["variants"]["clang"]["suffix"],
