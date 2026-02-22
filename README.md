@@ -2,11 +2,11 @@
     =====================================
     generator=datazen
     version=3.2.3
-    hash=67dbc7862b3657420fae4560812951fc
+    hash=3b372e021793936831205b525f4fe669
     =====================================
 -->
 
-# yambs ([3.1.3](https://pypi.org/project/yambs/))
+# yambs ([3.1.4](https://pypi.org/project/yambs/))
 
 [![python](https://img.shields.io/pypi/pyversions/yambs.svg)](https://pypi.org/project/yambs/)
 ![Build Status](https://github.com/libre-embedded/yambs/workflows/Python%20Package/badge.svg)
@@ -24,8 +24,8 @@ Consider [sponsoring development](https://github.com/sponsors/libre-embedded).
 
 This package is tested with the following Python minor versions:
 
-* [`python3.12`](https://docs.python.org/3.12/)
 * [`python3.13`](https://docs.python.org/3.13/)
+* [`python3.14`](https://docs.python.org/3.14/)
 
 ## Platform Support
 
@@ -126,7 +126,7 @@ following a specific convention), put your configuration data here.
 # Command-line Options
 
 ```
-$ ./venv3.13/bin/mbs -h
+$ ./venv3.14/bin/mbs -h
 
 usage: mbs [-h] [--version] [-v] [-q] [--curses] [--no-uvloop] [-C DIR]
            {compile_config,dist,download,gen,native,native_manifest,uf2conv,noop} ...
@@ -162,7 +162,7 @@ commands:
 ### `compile_config`
 
 ```
-$ ./venv3.13/bin/mbs compile_config -h
+$ ./venv3.14/bin/mbs compile_config -h
 
 usage: mbs compile_config [-h] [-i INCLUDES_KEY] [-u] [-e]
                           output inputs [inputs ...]
@@ -187,7 +187,7 @@ options:
 ### `dist`
 
 ```
-$ ./venv3.13/bin/mbs dist -h
+$ ./venv3.14/bin/mbs dist -h
 
 usage: mbs dist [-h] [-c CONFIG] [-s]
 
@@ -202,7 +202,7 @@ options:
 ### `download`
 
 ```
-$ ./venv3.13/bin/mbs download -h
+$ ./venv3.14/bin/mbs download -h
 
 usage: mbs download [-h] [-o OWNER] [-r REPO] [-O OUTPUT] [-p PATTERN]
 
@@ -220,7 +220,7 @@ options:
 ### `gen`
 
 ```
-$ ./venv3.13/bin/mbs gen -h
+$ ./venv3.14/bin/mbs gen -h
 
 usage: mbs gen [-h] [-c CONFIG] [-i] [-w] [-s] [-n]
 
@@ -239,7 +239,7 @@ options:
 ### `native`
 
 ```
-$ ./venv3.13/bin/mbs native -h
+$ ./venv3.14/bin/mbs native -h
 
 usage: mbs native [-h] [-c CONFIG] [-i] [-w] [-s] [-n]
 
@@ -258,7 +258,7 @@ options:
 ### `native_manifest`
 
 ```
-$ ./venv3.13/bin/mbs native_manifest -h
+$ ./venv3.14/bin/mbs native_manifest -h
 
 usage: mbs native_manifest [-h] [-c CONFIG]
 
@@ -272,7 +272,7 @@ options:
 ### `uf2conv`
 
 ```
-$ ./venv3.13/bin/mbs uf2conv -h
+$ ./venv3.14/bin/mbs uf2conv -h
 
 usage: mbs uf2conv [-h] [-b BASE] [-f FAMILY] [-o FILE] [-d DEVICE_PATH] [-l]
                    [-c] [-D] [-w] [-C] [-i]
