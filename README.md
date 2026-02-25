@@ -1,12 +1,12 @@
 <!--
     =====================================
     generator=datazen
-    version=3.2.3
-    hash=58bc1833c21224133e8483cced381959
+    version=3.2.4
+    hash=782f0e7866d32c02c5132d4defab4719
     =====================================
 -->
 
-# yambs ([3.1.5](https://pypi.org/project/yambs/))
+# yambs ([3.1.6](https://pypi.org/project/yambs/))
 
 [![python](https://img.shields.io/pypi/pyversions/yambs.svg)](https://pypi.org/project/yambs/)
 ![Build Status](https://github.com/libre-embedded/yambs/workflows/Python%20Package/badge.svg)
