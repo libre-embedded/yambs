@@ -95,6 +95,7 @@ def run_watch(args: _Namespace, src_root: _Path, command: str) -> int:
                 single_pass=args.single_pass,
             )
         )
+        or 0
         if args.watch
         else 0
     )

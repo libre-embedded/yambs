@@ -180,6 +180,21 @@
         "description": "Raspberry Pi RP2040"
     },
     {
+        "id": "0xe48bff59",
+        "short_name": "RP2350_ARM_S",
+        "description": "Raspberry Pi RP2350, Secure Arm image"
+    },
+    {
+        "id": "0xe48bff5a",
+        "short_name": "RP2350_RISCV",
+        "description": "Raspberry Pi RP2350, RISC-V image"
+    },
+    {
+        "id": "0xe48bff5b",
+        "short_name": "RP2350_ARM_NS",
+        "description": "Raspberry Pi RP2350, Non-secure Arm image"
+    },
+    {
         "id": "0x00ff6919",
         "short_name": "STM32L4",
         "description": "ST STM32L4xx"
